@@ -1,0 +1,36 @@
+.login-main {
+	width: 100%;
+	height: 100%;
+}
+mat-card {
+	// margin: 30px;
+	padding: 30px;
+	border-color: white;;
+	justify-content: center;
+	width: 100%;
+	background-color: #FBFBFB;
+}
+mat-card-title {
+  text-align: center;
+  color: #202024;
+}
+mat-card-content {
+  display: block;
+  justify-content: center;
+  width: 100%;
+}
+
+:host {
+	display: flex;
+	justify-content: center;
+	
+  }
+  .mat-form-field {
+	width: 100%;
+	min-width: 300px;
+  }
+
+
+
+
+ 

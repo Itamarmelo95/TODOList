@@ -1,0 +1,91 @@
+<div class="row">
+    <mat-card class="col-md-12">
+        <div class="row">
+            <div class="col-md-9 project-card-container">
+                <div  class="col-md-6">
+                    <form [formGroup]="newProjectForm">
+                        <mat-card class="project-card">
+                            <mat-card-title>Projeto 1</mat-card-title>
+                            <mat-card-content>
+                                <div class="list-task">
+                                    <div class="row">
+                                            <span>To Do</span>
+                                    </div>
+                                    <div class="row">
+                                        <!-- <mat-form-field>
+                                            Será o ngfor com a lista em status de todo
+                                        </mat-form-field> -->
+                                    </div>
+                                </div>
+
+                                <div class="list-task">
+                                <div class="row">
+                                        <span>Done</span>
+                                </div>
+                                <div class="row">
+                                    <!-- <mat-form-field>
+                                        Será o ngfor com a lista em status de todo
+                                    </mat-form-field> -->
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <mat-form-field>
+                                            <input type="text" matInput placeholder="Task Name"
+                                                formControlName="projectName">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3" style="padding-left: 0px; padding-top: 10px;">
+                                        <button mat-button class="col-12" type="submit">Add</button>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </form>
+                </div>
+               
+               
+               
+                <!-- <div  class="col-md-6">
+                    <form [formGroup]="newProjectForm">
+                        <mat-card class="project-card">
+                            <mat-card-title>Create a new project</mat-card-title>
+                            <mat-card-content>
+                                <div class="row">
+                                    <mat-form-field>
+                                        <input type="text" matInput placeholder="Project Name"
+                                            formControlName="projectName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="row">
+                                    <button mat-button class="col-12" type="submit">Create Project</button>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </form>
+                </div> -->
+                
+                
+
+            </div>
+            <div class="col-md-3">
+                <mat-card>
+                    <mat-card-title>Create a new project</mat-card-title>
+                    <mat-card-content>
+                        <form [formGroup]="newProjectForm">
+                            <div class="row">
+                                <mat-form-field>
+                                    <input type="text" matInput placeholder="Project Name"
+                                        formControlName="projectName">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <button mat-button class="col-12" type="submit">Create Project</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card>
+</div>

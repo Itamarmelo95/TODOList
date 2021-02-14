@@ -1,0 +1,28 @@
+<div class="login-main">
+    <mat-card class="col-md-12">
+        <mat-card-title>Signup</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="signupForm">
+                <div class="row">
+                    <mat-form-field>
+                      <input type="text" matInput placeholder="User" formControlName="userName">
+                    </mat-form-field>
+                </div>
+                  <div class="row">
+                        <mat-form-field>
+                            <input type="password" matInput  placeholder="Password" formControlName="password">
+                        </mat-form-field>
+                  </div>
+                  <div class="row">
+                    <mat-form-field>
+                        <input type="password" matInput  placeholder="Confirm password" formControlName="confirmPassword">
+                    </mat-form-field>
+              </div>
+                  <div class="row">
+                    <button mat-button class="col-12" type="submit">Register</button>
+                  </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+    
