@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProjectService } from '../services/project.service';
 import { Project } from '../models/project.model';
 import { Task } from '../models/task.model';
@@ -13,19 +13,23 @@ import { ProjectRequest } from '../models/project-request.model';
 export class HomeComponent implements OnInit {
   newProjectForm: FormGroup;
   projectList: Project[] = [];
+  userId: string;
   constructor(
     private fb: FormBuilder,
     private readonly _projectService: ProjectService
   ) { }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId');
     this.newProjectForm = this.fb.group({
       projectName: [''],
       taskName: ['']
     });
-
+    
     this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
+      debugger;
       this.projectList = [...projectRequest.projects];
+      this.projectList = this.projectList.filter(project => project.user === this.userId);
     });
 
   }
@@ -38,7 +42,8 @@ export class HomeComponent implements OnInit {
   createProject(): void {
     let project: Project = {
       name: this.newProjectForm.get('projectName').value.trim(),
-      tasks: []
+      tasks: [],
+      user: this.userId
     };
     if (project.name !== "") {
       this._projectService.createProject(project);

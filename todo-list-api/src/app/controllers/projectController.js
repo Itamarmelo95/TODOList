@@ -36,9 +36,9 @@ router.get('/:projectId', async (req, res) =>{
 router.post('/', async (req, res) =>{
     try {
         
-        const { name, tasks } = req.body;
+        const { name, tasks, user } = req.body;
 
-        const project = await Project.create({ name, user: req.userId });
+        const project = await Project.create({ name, user: user });
 
         await Promise.all(tasks.map(async task => {
             const projectTask = new Task({ ...task, project: project._id });

@@ -5,7 +5,7 @@
             <form [formGroup]="loginForm">
                 <div class="row">
                     <mat-form-field>
-                      <input type="text" matInput placeholder="User" formControlName="userName">
+                      <input type="text" matInput placeholder="Email" formControlName="userEmail">
                     </mat-form-field>
                 </div>
                   <div class="row">
@@ -14,7 +14,7 @@
                         </mat-form-field>
                   </div>
                   <div class="row">
-                    <button mat-button class="col-12" type="submit">Login</button>
+                    <button mat-button class="col-12" (click)="login()" type="submit">Login</button>
                   </div>
             </form>
         </mat-card-content>
