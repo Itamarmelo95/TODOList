@@ -20,7 +20,9 @@ mat-card {
 }
 
 .list-task {
-	min-height: 180px;
+	height: 180px;
+	overflow-x: hidden;
+	padding-left: 20px;
 }
 .icon {
 	border: none;
@@ -28,4 +30,11 @@ mat-card {
 }
 .title-card {
 	display: flex;
+}
+.add-button {
+	padding-left: 0px;
+	padding-top: 10px;
+}
+.delete-task-icon {
+	font-size: 13pt;
 }

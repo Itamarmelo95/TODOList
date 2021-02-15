@@ -32,29 +32,51 @@ export class HomeComponent implements OnInit {
 
   deleteProject(projectId: string): void {
     this._projectService.deleteProject(projectId);
-    this.projectList = this.projectList.filter(project => project._id !== projectId );
+    this.projectList = this.projectList.filter(project => project._id !== projectId);
   }
 
   createProject(): void {
     let project: Project = {
-      name : this.newProjectForm.get('projectName').value,
-      tasks : []
+      name: this.newProjectForm.get('projectName').value.trim(),
+      tasks: []
     };
-    if(project.name !== ""){
+    if (project.name !== "") {
       this._projectService.createProject(project);
       this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
         this.projectList = [...projectRequest.projects];
       });
     }
+    this.newProjectForm.reset();
   }
 
-  addTask(project: Project): void{
+  addTask(project: Project): void {
     debugger;
     let task: Task = {
-      name : this.newProjectForm.get('taskName').value
+      name: this.newProjectForm.get('taskName').value.trim()
     };
-    project.tasks.push(task);
-    this._projectService.updateProject(project);
-  }
 
+    if (!!task && !!task.name) {
+      project.tasks.push(task);
+      this._projectService.updateProject(project).subscribe( () => {
+        this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
+          this.projectList = [...projectRequest.projects];
+        });
+      });
+    }
+    this.newProjectForm.reset();
+  }
+  
+  deleteTask(project: Project, id: string): void {
+    debugger;
+    project.tasks = project.tasks.filter(task => task._id !== id);
+    this._projectService.updateProject(project).subscribe();
+  }
+  completeTask(project: Project, taskId: string): void {
+    project.tasks.find(task => task._id == taskId).completed = true;
+    this._projectService.updateProject(project).subscribe( () => {
+      this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
+        this.projectList = [...projectRequest.projects];
+      });
+    });
+  }
 }

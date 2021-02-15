@@ -14,21 +14,30 @@
                             <mat-card-content>
                                 <div class="list-task">
                                     <div class="row">
-                                        <span>To Do</span>
+                                        <h5>To Do</h5>
                                     </div>
                                     <div class="row" *ngFor="let task of project.tasks">
                                         <div *ngIf="!task.completed">
-                                            <span >{{task.name}}</span>
+                                            <input type="checkbox" [value]="task.completed" (change)="completeTask(project, task._id)" />
+                                            {{task.name}}
+                                                <button mat-menu-item class="icon" (click)="deleteTask(project, task._id)">
+                                                    <mat-icon class="delete-task-icon">delete</mat-icon>
+                                                </button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="list-task">
                                 <div class="row">
-                                        <span>Done</span>
+                                    <h5>Done</h5>
                                 </div>
                                 <div class="row" *ngFor="let task of project.tasks">
-                                    <span *ngIf="task.completed">{{task.name}}</span>
+                                    <div *ngIf="task.completed">
+                                        {{task.name}}
+                                            <button mat-menu-item class="icon" (click)="deleteTask(project, task._id)">
+                                                <mat-icon class="delete-task-icon">delete</mat-icon>
+                                            </button>
+                                    </div>
                                 </div>
                             </div>
                                 <div class="row">
@@ -38,7 +47,7 @@
                                                 formControlName="taskName">
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-3" style="padding-left: 0px; padding-top: 10px;">
+                                    <div class="col-md-3" class="add-button">
                                         <button mat-button class="col-12" (click)="addTask(project)" type="submit">Add</button>
                                     </div>
                                 </div>
