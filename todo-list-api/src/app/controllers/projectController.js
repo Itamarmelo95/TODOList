@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.use(authMiddleware);
 
+
 router.get('/', async (req, res) =>{
     try {
         const projects = await Project.find().populate('tasks');
