@@ -1,4 +1,12 @@
 <div class="row">
+    <mat-card class="col-md-12 header">
+        <div>
+            <h5>Todo Aplication</h5>
+        </div>
+        <div class="logout-button">
+            <button mat-button class="col-3" (click)="logout()" type="submit">Logout</button>
+        </div>
+    </mat-card>
     <mat-card class="col-md-12">
         <div class="row">
             <div class="col-md-9 project-card-container">
@@ -32,7 +40,7 @@
                                     <h5>Done</h5>
                                 </div>
                                 <div class="row" *ngFor="let task of project.tasks" >
-                                    <div *ngIf="task.completed" >
+                                    <div *ngIf="task.completed" tooltip title="{{task.finishDate}}">
                                         {{task.name}}
                                         <mat-icon class="delete-task-icon">check</mat-icon>
                                     </div>
@@ -45,7 +53,7 @@
                                                 formControlName="taskName">
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-3" class="add-button">
+                                    <div class="col-md-3 add-button">
                                         <button mat-button class="col-12" (click)="addTask(project)" type="submit">Add</button>
                                     </div>
                                 </div>

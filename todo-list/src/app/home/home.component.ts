@@ -4,6 +4,7 @@ import { ProjectService } from '../services/project.service';
 import { Project } from '../models/project.model';
 import { Task } from '../models/task.model';
 import { ProjectRequest } from '../models/project-request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,11 @@ export class HomeComponent implements OnInit {
   newProjectForm: FormGroup;
   projectList: Project[] = [];
   userId: string;
+  returnUrl: string;
   constructor(
     private fb: FormBuilder,
-    private readonly _projectService: ProjectService
+    private readonly _projectService: ProjectService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class HomeComponent implements OnInit {
       projectName: [''],
       taskName: ['']
     });
+    this.returnUrl = '/login';
     
     this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
       debugger;
@@ -75,6 +79,14 @@ export class HomeComponent implements OnInit {
     project.tasks = project.tasks.filter(task => task._id !== id);
     this._projectService.updateProject(project).subscribe();
   }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.setItem('isAuthenticated', 'false');
+    this.router.navigate([this.returnUrl]);
+  }
+
   completeTask(project: Project, taskId: string): void {
     project.tasks.find(task => task._id == taskId).completed = true;
     project.tasks.find(task => task._id == taskId).finishDate =  new Date();
