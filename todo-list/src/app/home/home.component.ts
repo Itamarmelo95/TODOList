@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   addTask(project: Project): void {
     debugger;
     let task: Task = {
-      name: this.newProjectForm.get('taskName').value.trim()
+      name: this.newProjectForm.get('taskName').value.trim(),
     };
 
     if (!!task && !!task.name) {
@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit {
   }
   completeTask(project: Project, taskId: string): void {
     project.tasks.find(task => task._id == taskId).completed = true;
+    project.tasks.find(task => task._id == taskId).finishDate =  new Date();
     this._projectService.updateProject(project).subscribe( () => {
       this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
         this.projectList = [...projectRequest.projects.filter(project => project.user === this.userId)];

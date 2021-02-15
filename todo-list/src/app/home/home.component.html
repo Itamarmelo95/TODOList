@@ -31,12 +31,10 @@
                                 <div class="row">
                                     <h5>Done</h5>
                                 </div>
-                                <div class="row" *ngFor="let task of project.tasks">
-                                    <div *ngIf="task.completed">
+                                <div class="row" *ngFor="let task of project.tasks" >
+                                    <div *ngIf="task.completed" >
                                         {{task.name}}
-                                            <button mat-menu-item class="icon" (click)="deleteTask(project, task._id)">
-                                                <mat-icon class="delete-task-icon">delete</mat-icon>
-                                            </button>
+                                        <mat-icon class="delete-task-icon">check</mat-icon>
                                     </div>
                                 </div>
                             </div>

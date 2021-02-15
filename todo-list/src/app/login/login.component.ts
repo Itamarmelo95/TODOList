@@ -16,9 +16,8 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   userAuthenticated: UserAuthenticated;
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private readonly toastr: ToastrService,
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
     private readonly _userService: UserService
   ) { }
 
@@ -41,6 +40,7 @@ export class LoginComponent implements OnInit {
       this.userAuthenticated = user;
         localStorage.setItem('token', this.userAuthenticated.token);
         localStorage.setItem('userId', this.userAuthenticated.user._id);
+        localStorage.setItem('isAuthenticated', 'true');
         this.router.navigate([this.returnUrl]);
       });
   }

@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { HomeComponent } from './home/home.component';
     ToastrModule.forRoot()
   ],
   providers: [MatDatepickerModule,
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

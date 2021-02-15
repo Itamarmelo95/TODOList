@@ -11,4 +11,7 @@ export class UserService {
     userAuthenticate(user: User) {
         return this.httpClient.post(`http://localhost:3000/auth/authenticate/`, user);
     }
+    userRegister(user: User) {
+        return this.httpClient.post(`http://localhost:3000/auth/register/`, user);
+    }
 }
