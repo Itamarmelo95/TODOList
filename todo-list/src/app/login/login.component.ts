@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = '/home';
   }
 
-  login() {
+  login(): void {
     debugger;
     let userAuthenticate: User = {
       email : this.loginForm.get('userEmail').value.trim(),

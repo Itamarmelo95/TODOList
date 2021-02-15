@@ -28,8 +28,7 @@ export class HomeComponent implements OnInit {
     
     this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
       debugger;
-      this.projectList = [...projectRequest.projects];
-      this.projectList = this.projectList.filter(project => project.user === this.userId);
+      this.projectList = [...projectRequest.projects.filter(project => project.user === this.userId)];
     });
 
   }
@@ -48,7 +47,7 @@ export class HomeComponent implements OnInit {
     if (project.name !== "") {
       this._projectService.createProject(project);
       this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
-        this.projectList = [...projectRequest.projects];
+        this.projectList = [...projectRequest.projects.filter(project => project.user === this.userId)];
       });
     }
     this.newProjectForm.reset();
@@ -64,7 +63,7 @@ export class HomeComponent implements OnInit {
       project.tasks.push(task);
       this._projectService.updateProject(project).subscribe( () => {
         this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
-          this.projectList = [...projectRequest.projects];
+          this.projectList = [...projectRequest.projects.filter(project => project.user === this.userId)];
         });
       });
     }
@@ -80,7 +79,7 @@ export class HomeComponent implements OnInit {
     project.tasks.find(task => task._id == taskId).completed = true;
     this._projectService.updateProject(project).subscribe( () => {
       this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
-        this.projectList = [...projectRequest.projects];
+        this.projectList = [...projectRequest.projects.filter(project => project.user === this.userId)];
       });
     });
   }

@@ -5,13 +5,16 @@
             <form [formGroup]="loginForm">
                 <div class="row">
                     <mat-form-field>
-                      <input type="text" matInput placeholder="Email" formControlName="userEmail">
+                      <input type="email" matInput placeholder="Email" formControlName="userEmail" ngModel email>
                     </mat-form-field>
                 </div>
                   <div class="row">
                         <mat-form-field>
                             <input type="password" matInput  placeholder="Password" formControlName="password">
                         </mat-form-field>
+                  </div>
+                  <div class="row">
+                    not signed up? <a href="/signup"> Sigup</a>
                   </div>
                   <div class="row">
                     <button mat-button class="col-12" (click)="login()" type="submit">Login</button>
