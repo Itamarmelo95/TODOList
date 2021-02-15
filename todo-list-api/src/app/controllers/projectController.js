@@ -12,6 +12,7 @@ router.use(authMiddleware);
 router.get('/', async (req, res) =>{
     try {
         const projects = await Project.find().populate('tasks');
+        console.log(projects);
         return res.send({ projects });
 
     } catch (error) {

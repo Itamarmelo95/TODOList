@@ -2,19 +2,24 @@
     <mat-card class="col-md-12">
         <div class="row">
             <div class="col-md-9 project-card-container">
-                <div  class="col-md-6">
+                <div  class="col-md-6" *ngFor="let project of projectList">
                     <form [formGroup]="newProjectForm">
                         <mat-card class="project-card">
-                            <mat-card-title>Projeto 1</mat-card-title>
+                            <div class="title-card">
+                                <mat-card-title>{{project.name}}</mat-card-title>
+                                <button mat-menu-item class="icon" (click)="deleteProject(project._id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
                             <mat-card-content>
                                 <div class="list-task">
                                     <div class="row">
-                                            <span>To Do</span>
+                                        <span>To Do</span>
                                     </div>
-                                    <div class="row">
-                                       <!-- <div *ngFor="let toDo of TaskList">
-
-                                       </div> -->
+                                    <div class="row" *ngFor="let task of project.tasks">
+                                        <div *ngIf="!task.completed">
+                                            <span >{{task.name}}</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -22,21 +27,19 @@
                                 <div class="row">
                                         <span>Done</span>
                                 </div>
-                                <div class="row">
-                                    <!-- <div *ngFor="let toDo of TaskList">
-
-                                    </div> -->
+                                <div class="row" *ngFor="let task of project.tasks">
+                                    <span *ngIf="task.completed">{{task.name}}</span>
                                 </div>
                             </div>
                                 <div class="row">
                                     <div class="col-md-9">
                                         <mat-form-field>
                                             <input type="text" matInput placeholder="Task Name"
-                                                formControlName="projectName">
+                                                formControlName="taskName">
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-3" style="padding-left: 0px; padding-top: 10px;">
-                                        <button mat-button class="col-12" type="submit">Add</button>
+                                        <button mat-button class="col-12" (click)="addTask(project)" type="submit">Add</button>
                                     </div>
                                 </div>
                             </mat-card-content>
@@ -57,7 +60,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="row">
-                                <button mat-button class="col-12" type="submit">Create Project</button>
+                                <button mat-button class="col-12" (click)="createProject()" type="submit">Create Project</button>
                             </div>
                         </form>
                     </mat-card-content>
