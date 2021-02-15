@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
     this.returnUrl = '/login';
     
     this._projectService.getAllProjects().subscribe((projectRequest: ProjectRequest) => {
-      debugger;
       this.projectList = [...projectRequest.projects.filter(project => project.user === this.userId)];
     });
 
@@ -58,7 +57,6 @@ export class HomeComponent implements OnInit {
   }
 
   addTask(project: Project): void {
-    debugger;
     let task: Task = {
       name: this.newProjectForm.get('taskName').value.trim(),
     };
@@ -75,7 +73,6 @@ export class HomeComponent implements OnInit {
   }
   
   deleteTask(project: Project, id: string): void {
-    debugger;
     project.tasks = project.tasks.filter(task => task._id !== id);
     this._projectService.updateProject(project).subscribe();
   }

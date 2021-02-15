@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    debugger;
     let userAuthenticate: User = {
       email : this.loginForm.get('userEmail').value.trim(),
       password: this.loginForm.get('password').value.trim()
